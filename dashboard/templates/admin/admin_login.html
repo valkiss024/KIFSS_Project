@@ -1,0 +1,21 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+    <form method="post">
+    {{ form.hidden_tag() }}  <!--Cross-site request forgery attack-->
+    <div class="card mx-auto w-50 p-4">
+        <div class="card-title text-center">
+            <h4>Login</h4>
+        </div>
+        <div class="card-subtitle mb-4 text-center">
+            <h6>Please sign in to access your Dashboard</h6>
+        </div>
+        <fieldset class="form-group text-center">
+            <ul style="list-style-type: none">
+                <li class="m-2">{{ form.email }}</li>
+                <li class="m-2">{{ form.password }}</li>
+            </ul>
+            {{ form.submit }}
+        </fieldset>
+    </div>
+</form>
+{% endblock %}

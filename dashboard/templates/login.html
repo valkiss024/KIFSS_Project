@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Login to Dashboard!{% endblock %}
+
+{% block container %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            {% if category == 'error' %}
+                <h4 class="alert alert-danger">{{ message }}</h4>
+            {% elif category == 'info' %}
+                <h4 class="alert alert-info">{{ message }}</h4>
+            {% else %}
+                <h4 class="alert alert-success">{{ message }}</h4>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+{% for field, errors in form.errors.items() %}
+    <h4 class="alert alert-danger">{{ ', '.join(errors) }}</h4>
+{% endfor %}
+
+<form method="post">
+    {{ form.hidden_tag() }}  <!--Cross-site request forgery attack-->
+    <div class="card mx-auto w-50 p-4">
+        <div class="card-title text-center">
+            <h4>Login</h4>
+        </div>
+        <div class="card-subtitle mb-4 text-center">
+            <h6>Please sign in to access your Dashboard</h6>
+        </div>
+        <fieldset class="form-group text-center">
+            <ul style="list-style-type: none">
+                <li class="m-2">{{ form.email }}</li>
+                <li class="m-2">{{ form.password }}</li>
+                <li class="m-2">{{ form.is_organization.label }} {{ form.is_organization }}</li>
+            </ul>
+            {{ form.submit }}
+        </fieldset>
+        <p class="text-muted mt-3 text-center">Looking to create an organization? <a href="{{ url_for('main.register') }}">Click here!</a></p>
+    </div>
+</form>
+{% endblock %}
