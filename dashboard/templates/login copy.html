@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log In</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+    <header>
+        <div class="headbox">
+            <img src="/dashboard/Assets/toplogo.png">
+        </div>
+    </header>
+    <div class="login">
+    <form class="box" method="post">
+         <div class="form">
+            <h1>Welcome!</h1>
+            <h2>Sign In</h2>
+            <div class="inputBox">
+                <input type="text" required="required">
+                <span>Email</span>
+                <i></i>
+            </div>
+            <div class="inputBox">
+                <input type="password" required="required">
+                <span>Password</span>
+                <i></i>
+            </div>
+            <div class="links">
+                <label><input type="checkbox" name="chkbox" id="chkbox">I am an organization:</label>
+                <a class="nav-link" href="{{ url_for('main.register') }}">Register ORG</a>
+            </div>
+            <input type="submit" value="Login">
+         </div>
+    </form>
+</div>
+</body>
+
+</html>
