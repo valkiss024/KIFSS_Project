@@ -113,7 +113,7 @@ class Sensor(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     serial_number = db.Column(db.String(10), nullable=False)
-    status = db.Column(db.String(), nullable=False)
+    status = db.Column(db.String(100), nullable=False)
     date = db.Column(db.DateTime(), nullable=False)
     # TODO: Implement what happens to the Sensor if either of the Foreign Keys get deleted
     organization_id = db.Column(db.Integer, db.ForeignKey('organization.id'), nullable=False)
