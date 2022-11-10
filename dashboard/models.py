@@ -138,7 +138,7 @@ class Sensor(db.Model):
 
     def __repr__(self):
         """Object representation for debugging and read queries"""
-        return f'Device({self.serial_number}, {self.status}, {self.date}, {self.organization.name}, {self.user.email})'
+        return f'Device({self.serial_number}, {self.status}, {self.date}, {self.organization.name}, {self.address}, {self.city}, {self.region}, {self.user.email})'
 
 
 class AdminUser(db.Model, UserMixin):
