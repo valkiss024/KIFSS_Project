@@ -117,6 +117,9 @@ class Sensor(db.Model):
     date = db.Column(db.DateTime(), nullable=False)
     # TODO: Implement what happens to the Sensor if either of the Foreign Keys get deleted
     organization_id = db.Column(db.Integer, db.ForeignKey('organization.id'), nullable=False)
+    address = db.Column(db.String(100), nullable=False)
+    city = db.Column(db.String(100), nullable=False)
+    region = db.Column(db.String(100), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     organization = relationship('Organization', backref='sensors')
@@ -128,6 +131,9 @@ class Sensor(db.Model):
         self.status = status
         self.date = date
         self.organization_id = organization_id
+        self.address = organization_id
+        self.city = organization_id
+        self.region = organization_id
         self.user_id = user_id
 
     def __repr__(self):
