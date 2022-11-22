@@ -1,0 +1,174 @@
+
+#content {
+    margin-left: 100px;
+}
+
+#head {
+    margin-left: 63px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: absolute;
+    padding: 0 5rem;
+}
+
+#head-title {
+    margin-top: 100px;
+    padding-bottom: 24px;
+}
+
+#head-title * {
+    margin: 0;
+    display: inline-block;
+}
+
+#head-title img {
+    height: auto;
+    width: 64px;
+    margin-top: 1.2rem;
+    margin-left: 4rem;
+}
+
+#filter-bar {
+    display: inline-block;
+    margin-top: 1rem;
+    margin-bottom: -3rem !important;
+}
+
+#filter-bar > *, #legend > div, #legend > div > *, #inputfilter > * {
+    float: left;
+}
+
+input[type="radio"] {
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 120px;
+    height: 44px;
+    margin: 0;
+    border-radius: 32px;
+    border: 4px solid #354CBF;
+    -webkit-appearance: none; /*to disable the default appearance of radio button*/
+    -moz-appearance: none;
+}
+  
+input[type="radio"]:focus { /*no need, if you don't disable default appearance*/
+    outline: none; /*to remove the square border on focus*/
+}
+  
+input[type="radio"]:checked { /*no need, if you don't disable default appearance*/
+    background-color: #354CBF;
+}
+  
+input[type="radio"]:checked ~ span:first-of-type {
+    color: white;
+}
+  
+label span:first-of-type {
+    position: relative;
+    left: -5.3rem;
+    top: -1rem;
+    font-size: 18px;
+    color: #354CBF;
+}
+  
+label {
+    margin-right: -2rem;
+}
+
+label span {
+    transition: color 0.3s;
+    position: relative;
+    top: -12px;
+    cursor: pointer;
+}
+
+label:last-of-type {
+    margin-right: 0rem;
+}
+
+#legend {
+    margin-bottom: 2rem;
+}
+
+#legend > div > div {
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    margin-top: 10px;
+}
+#legend > div > p {
+    margin: 0.79rem 2rem 0 1rem;
+}
+#pass-dot {
+    background-color: #4A8634;
+}
+#used-dot {
+    background-color: #D19C33;
+}
+#fail-dot {
+    background-color: #D13333;
+}
+#inputfilter > * {
+    margin-top: 0 !important;
+}
+
+#inputfilter {
+    z-index: 1000;
+    width: 389px;
+    height: 8rem;
+    background-color: #E0EBFB;
+    z-index: 100;
+}
+
+#searchbar {
+    width: 256px;
+    height: 44px;
+    vertical-align: middle;
+    color: #354CBF;
+    border: #354CBF 4px solid;
+    border-radius: 40px;
+    background-color: #E0EBFB;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-family: "avenir-black";
+    font-size: 14px;
+}
+input::placeholder {
+    color: #8896de;
+}
+
+#inputfilter img {
+    width: 44px;
+    height: 44px;
+    margin: 0 24px;
+    display: inline-block;
+}
+
+#year-selection {
+    padding-bottom: 1rem;
+}
+
+#bluebar {
+    height: 4px;
+    width: 108%;
+    border-radius: 4px;
+    left: -4rem;
+    margin-right: -6rem;
+    position: relative;
+    z-index: 100;
+    background-color: #354CBF;
+    overflow-x: hidden !important;
+}
+
+#on img {
+    width: 24px;
+    height: 24px;
+    margin: 0.78rem 1.5rem 0 1.5rem;
+}
+#on p {
+    margin: 1px 0 0 0;
+}
