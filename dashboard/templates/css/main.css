@@ -4,6 +4,7 @@ body {
     color: #354CBF;
     background-color: #E0EBFB;
     overflow-x: hidden;
+    overflow-y: scroll;
 }
 a {
     text-decoration: none;
