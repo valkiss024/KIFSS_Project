@@ -164,11 +164,11 @@ input::placeholder {
     overflow-x: hidden !important;
 }
 
-#on img {
+.devicesfix img {
     width: 24px;
     height: 24px;
     margin: 0.78rem 1.5rem 0 1.5rem;
 }
-#on p {
+.devicesfix p {
     margin: 1px 0 0 0;
 }
