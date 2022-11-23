@@ -35,7 +35,7 @@ def login():
 
         return redirect(url_for('main.dashboard_'))
 
-    return render_template('login.html', form=login_form)
+    return render_template('login_copy.html', form=login_form)
 
 
 @dashboard.route('/register', methods=['GET', 'POST'])
@@ -60,7 +60,7 @@ def register():
         flash('Account has been registered successfully, please wait for approval!', 'success')
         return redirect(url_for('main.login'))
 
-    return render_template('register_org.html', form=register_form)
+    return render_template('register_copy.html', form=register_form)
 
 
 @dashboard.route('/dashboard')
