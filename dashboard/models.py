@@ -7,7 +7,7 @@ from .extensions import db, login_manager
 
 # Define user loaders for login manager
 
-@login_manager.user_loader
+"""@login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
@@ -19,7 +19,7 @@ def load_organization(organization_id):
 
 @login_manager.user_loader
 def load_admin(admin_id):
-    return AdminUser.query.get(int(admin_id))
+    return AdminUser.query.get(int(admin_id))"""
 
 # Define models --> tables in the DB
 
@@ -53,8 +53,7 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         """Object representation for debugging and read queries"""
-        return f'User({self.first_name}, {self.last_name}, {self.email}, {self.contact_number}, ' \
-               f'{self.organization.name})'
+        return f'User({self.first_name}, {self.last_name}, {self.email}, {self.contact_number})'
 
     def create_password_hash(self, password):
         """Method to encrypt password provided by the user"""
