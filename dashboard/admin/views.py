@@ -2,6 +2,9 @@ from flask import redirect, url_for, flash
 from flask_admin import AdminIndexView, expose
 from flask_admin.contrib.sqla import ModelView
 from flask_login import current_user, login_user, logout_user
+from werkzeug.security import generate_password_hash
+from wtforms import PasswordField
+from wtforms.validators import InputRequired
 
 from dashboard.forms import AdminLoginForm
 from dashboard.models import AdminUser
@@ -33,7 +36,22 @@ class CustomAdminIndexView(AdminIndexView):
         return redirect(url_for('.admin_login'))
 
 
-class CustomModelView(ModelView):
+class CustomPasswordField(PasswordField):
 
-    def is_accessible(self):
-        return isinstance(current_user, AdminUser)
+    def populate_obj(self, obj, name):
+        setattr(obj, name, generate_password_hash(self.data))
+
+
+class CustomModelView(ModelView):
+    pass
+    #def is_accessible(self):
+    #    return isinstance(current_user, AdminUser)
+
+
+class CustomUserModelView(CustomModelView):
+    form_extra_fields = {
+        'password': CustomPasswordField('Password', validators=[InputRequired()])
+    }
+
+    #def is_accessible(self):
+    #    return isinstance(current_user, AdminUser)

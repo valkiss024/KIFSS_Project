@@ -1,4 +1,5 @@
 from flask_login import UserMixin
+from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import relationship
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -7,7 +8,7 @@ from .extensions import db, login_manager
 
 # Define user loaders for login manager
 
-@login_manager.user_loader
+"""@login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
@@ -19,7 +20,7 @@ def load_organization(organization_id):
 
 @login_manager.user_loader
 def load_admin(admin_id):
-    return AdminUser.query.get(int(admin_id))
+    return AdminUser.query.get(int(admin_id))"""
 
 # Define models --> tables in the DB
 
@@ -53,8 +54,7 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         """Object representation for debugging and read queries"""
-        return f'User({self.first_name}, {self.last_name}, {self.email}, {self.contact_number}, ' \
-               f'{self.organization.name})'
+        return f'User({self.first_name}, {self.last_name}, {self.email}, {self.contact_number})'
 
     def create_password_hash(self, password):
         """Method to encrypt password provided by the user"""
@@ -113,7 +113,7 @@ class Sensor(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     serial_number = db.Column(db.String(10), nullable=False)
-    status = db.Column(db.String(), nullable=False)
+    status = db.Column(db.String(100), nullable=False)
     date = db.Column(db.DateTime(), nullable=False)
     # TODO: Implement what happens to the Sensor if either of the Foreign Keys get deleted
     organization_id = db.Column(db.Integer, db.ForeignKey('organization.id'), nullable=False)
