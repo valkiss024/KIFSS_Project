@@ -2,7 +2,7 @@ from sqlalchemy import event
 from werkzeug.security import generate_password_hash
 
 from dashboard import admin_site, db
-from dashboard.admin.views import CustomAdminIndexView, CustomModelView, ModelView
+from dashboard.admin.views import CustomAdminIndexView, CustomModelView, ModelView, CustomUserModelView
 from dashboard.models import User, Organization, Sensor, AdminUser
 
 
@@ -15,21 +15,3 @@ def setup_admin():
     admin_site.add_view(ModelView(Organization, db.session))
     admin_site.add_view(ModelView(Sensor, db.session))
     admin_site.add_view(ModelView(AdminUser, db.session))
-
-    """@event.listens_for(User.password, 'set', retval=True)
-    def hash_user_password(target, value, oldvalue, initiator):
-        if value != oldvalue:
-            return generate_password_hash(value)
-        return value
-
-    @event.listens_for(Organization.password, 'set', retval=True)
-    def hash_user_password(target, value, oldvalue, initiator):
-        if value != oldvalue:
-            return generate_password_hash(value)
-        return value
-
-    @event.listens_for(AdminUser.password, 'set', retval=True)
-    def hash_user_password(target, value, oldvalue, initiator):
-        if value != oldvalue:
-            return generate_password_hash(value)
-        return value"""
