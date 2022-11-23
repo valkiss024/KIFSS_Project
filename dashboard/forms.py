@@ -3,7 +3,7 @@ from wtforms import EmailField, PasswordField, StringField, SubmitField, TelFiel
 from wtforms.validators import InputRequired, Email, Length, ValidationError, StopValidation
 
 from dashboard import db
-from dashboard.models import Organization, User, AdminUser
+from dashboard.models import Organization, User, AdminUser, Sensor
 
 
 # Registration Forms:
@@ -117,3 +117,20 @@ class AdminLoginForm(BaseLoginForm):
 
     def get_user(self):
         return AdminUser.query.filter_by(email=self.email.data).first()
+
+
+class AddSensorForm(FlaskForm):
+    """
+    The Add Sensor form
+    create a new Sensor object in the Database
+    """
+
+    serial_number = StringField(label='Serial Number:', validators=[InputRequired(), Length(min=2, max=10)])
+    name = StringField(label='Name:', validators=[InputRequired(), Length(min=2, max=50)])
+    address = StringField(label='Address Line 1:', validators=[InputRequired(), Length(max=70)])
+    city = StringField(label='City:', validators=[InputRequired(), Length(max=30)])
+    region = StringField(label='Region:', validators=[InputRequired(), Length(max=30)])
+
+    def validate_serial_number(self, serial_number):
+        if Sensor.query.filter_by(serial_number=serial_number.data).first():
+            raise ValidationError('Sensor already exists!')

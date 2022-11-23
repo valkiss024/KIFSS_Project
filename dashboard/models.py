@@ -63,6 +63,9 @@ class User(db.Model, UserMixin):
         """Method to decrypt stored password hash and compare it against password provided"""
         return check_password_hash(pwhash=self.password, password=password)
 
+    def get_user_organisation(self):
+        return self.organization_id
+
 
 class Organization(db.Model, UserMixin):
     """
@@ -110,28 +113,93 @@ class Sensor(db.Model):
     # noinspection SpellCheckingInspection
     __tablename__ = 'sensor'
 
-    id = db.Column(db.Integer, primary_key=True)
-    serial_number = db.Column(db.String(10), nullable=False)
+    serial_number = db.Column(db.String(10), primary_key=True, nullable=False)
+    name = db.Column(db.String(50), nullable=False)
     status = db.Column(db.String(100), nullable=False)
     date = db.Column(db.DateTime(), nullable=False)
     # TODO: Implement what happens to the Sensor if either of the Foreign Keys get deleted
     organization_id = db.Column(db.Integer, db.ForeignKey('organization.id'), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    address = db.Column(db.String(100), nullable=False)
+    city = db.Column(db.String(100), nullable=False)
+    region = db.Column(db.String(100), nullable=False)
+    latitude = db.Column(db.String(100), nullable=False)
+    longitude = db.Column(db.String(100), nullable=False)
 
     organization = relationship('Organization', backref='sensors')
-    user = relationship('User', backref='sensors')
 
-    def __init__(self, serial_number, status, date, organization_id, user_id):
+    def __init__(self, serial_number, name, status, date, organization_id, address, city, region, latitude, longitude):
+        """Class constructor"""
+        self.serial_number = serial_number
+        self.name = name
+        self.status = status
+        self.date = date
+        self.organization_id = organization_id
+        self.address = address
+        self.city = city
+        self.region = region
+        self.latitude = latitude
+        self.longitude = longitude
+
+    def __repr__(self):
+        """Object representation for debugging and read queries"""
+        return f'Device({self.serial_number}, {self.name}, {self.status}, {self.date}, {self.organization.name}, {self.address}, {self.city}, {self.region}, {self.latitude}, {self.longitude})'
+
+
+class SelfCheck(db.Model):
+    """
+    The SelfCheck model, defines a SelfCheck object in the Database
+    """
+
+    # noinspection SpellCheckingInspection
+    __tablename__ = 'selfcheck'
+
+    id = db.Column(db.Integer, primary_key=True)
+    serial_number = db.Column(db.String(10), db.ForeignKey('sensor.serial_number'), nullable=False)
+    status = db.Column(db.String(10), nullable=False)
+    date = db.Column(db.DateTime(), nullable=False)
+    assessed = db.Column(db.Boolean, nullable=False)
+
+    sensor = relationship('Sensor', backref='selfchecks')
+
+    def __init__(self, serial_number, status, date, assessed):
         """Class constructor"""
         self.serial_number = serial_number
         self.status = status
         self.date = date
-        self.organization_id = organization_id
-        self.user_id = user_id
+        self.assessed = assessed
 
     def __repr__(self):
         """Object representation for debugging and read queries"""
-        return f'Device({self.serial_number}, {self.status}, {self.date}, {self.organization.name}, {self.user.email})'
+        return f'SelfCheck({self.sensor.serial_number}, {self.status}, {self.date}, {self.assessed})'
+
+
+class Trigger(db.Model):
+    """
+    The Trigger model, defines a Trigger object in the Database
+    """
+
+    # noinspection SpellCheckingInspection
+    __tablename__ = 'trigger'
+
+    id = db.Column(db.Integer, primary_key=True)
+    serial_number = db.Column(db.String(10), db.ForeignKey('sensor.serial_number'), nullable=False)
+    status = db.Column(db.String(10), nullable=False)
+    date = db.Column(db.DateTime(), nullable=False)
+    assessed = db.Column(db.Boolean, nullable=False)
+
+    sensor = relationship('Sensor', backref='triggers')
+
+    def __init__(self, serial_number, status, date, assessed):
+        """Class constructor"""
+        self.serial_number = serial_number
+        self.status = status
+        self.date = date
+        self.assessed = assessed
+
+    def __repr__(self):
+        """Object representation for debugging and read queries"""
+        return f'Trigger({self.sensor.serial_number}, {self.status}, {self.date}. {self.assessed})'
+
 
 
 class AdminUser(db.Model, UserMixin):
