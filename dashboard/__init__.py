@@ -4,6 +4,7 @@ from .extensions import db, login_manager, admin_site
 from .models import User, Organization, Sensor
 from .routes import dashboard
 from .admin import setup_admin, CustomAdminIndexView
+import dashboard.inserts as ins
 
 
 def create_app(config_file='./settings.py'):
@@ -15,6 +16,7 @@ def create_app(config_file='./settings.py'):
     with app.app_context():
         db.create_all()
         db.session.commit()
+        ins.json_to_sql()
 
     app.register_blueprint(dashboard)  # Register the Blueprint to access routes
 
