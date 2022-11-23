@@ -5,6 +5,8 @@ from dashboard import db, login_manager
 from dashboard.forms import MainLoginForm, OrganizationRegisterForm, AddSensorForm
 from dashboard.models import Organization, User, Sensor
 
+import dashboard.inserts as ins
+
 dashboard = Blueprint('main', __name__, template_folder='templates')  # Instantiate the Blueprint object
 
 
@@ -66,7 +68,9 @@ def register():
 @dashboard.route('/dashboard')
 @login_required
 def dashboard_():
-    # print(current_user)
+    # print(current_user
+    ins.add_example_sensors(current_user.get_organization())
+    ins.json_to_sql()
     return render_template('dashboard.html', user=current_user)
 
 
@@ -93,7 +97,7 @@ def addsensor():
     if sensor_form.validate_on_submit():
         new_sensor = Sensor(
             serial_number=sensor_form.serial_number.data,
-            organization_id=current_user.get_user_organisation(),
+            organization_id=current_user.get_user_organization(),
             address=sensor_form.address.data,
             city=sensor_form.city.data,
             region=sensor_form.region.data
