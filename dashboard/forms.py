@@ -44,6 +44,10 @@ class OrganizationRegisterForm(BaseRegisterForm):
         if Organization.query.filter_by(email=email.data).first():
             raise ValidationError('Email already exists!')
 
+    def validate_name(self, name):
+        if Organization.query.filter_by(name=name.data).first():
+            raise ValidationError('An Organization with this name already exists!')
+
 
 class UserRegisterForm(BaseRegisterForm):
     """
