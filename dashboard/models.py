@@ -1,9 +1,8 @@
 from flask_login import UserMixin
-from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import relationship
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from .extensions import db, login_manager
+from .extensions import db
 
 
 # Define user loaders for login manager
