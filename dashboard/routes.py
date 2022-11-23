@@ -60,7 +60,7 @@ def register():
         flash('Account has been registered successfully, please wait for approval!', 'success')
         return redirect(url_for('main.login'))
 
-    return render_template('register_org.html', form=register_form)
+    return render_template('register.html', form=register_form)
 
 
 @dashboard.route('/dashboard')

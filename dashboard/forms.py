@@ -67,10 +67,8 @@ class BaseLoginForm(FlaskForm):
     The Base Login Form - defines basic form fields and validation methods use across different login forms on the site
     """
 
-    email = EmailField(validators=[InputRequired(), Email(), Length(max=120)],
-                       render_kw={'placeholder': 'Email Address'})
-    password = PasswordField(validators=[InputRequired(), Length(min=8, max=40)],
-                             render_kw={'placeholder': 'Password'})
+    email = EmailField(validators=[InputRequired(), Email(), Length(max=120)])
+    password = PasswordField(validators=[InputRequired(), Length(min=8, max=40)])
     submit = SubmitField('Login')
 
     def _validate_password(self, password, user):
@@ -85,7 +83,7 @@ class MainLoginForm(BaseLoginForm):
     users or organizations
     """
 
-    is_organization = BooleanField(label='I am an organization:')
+    is_organization = BooleanField(label='I am an organization')
 
     def validate_email(self, email):
         """Main validation method - checks if the user exists, call the password validator then in case if the user is
