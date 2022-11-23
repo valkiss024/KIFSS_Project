@@ -1,6 +1,6 @@
 from flask import Flask
 
-from .extensions import db, login_manager, admin_site
+from .extensions import db, login_manager, admin_site, mail
 from .models import User, Organization, Sensor
 from .routes import dashboard
 from .admin import setup_admin, CustomAdminIndexView
@@ -16,6 +16,8 @@ def create_app(config_file='./settings.py'):
         db.drop_all()
         db.create_all()
         db.session.commit()
+
+    mail.init_app(app)
 
     app.register_blueprint(dashboard)  # Register the Blueprint to access routes
 

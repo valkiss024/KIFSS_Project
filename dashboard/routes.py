@@ -1,7 +1,10 @@
+import os
+
 from flask import Blueprint, render_template, flash, redirect, url_for
 from flask_login import login_required, current_user, logout_user, login_user
+from flask_mail import Message
 
-from dashboard import db, login_manager
+from dashboard import db, login_manager, mail
 from dashboard.forms import MainLoginForm, OrganizationRegisterForm
 from dashboard.models import Organization, User
 
@@ -16,6 +19,8 @@ def load_user(user_id):
 @login_manager.user_loader
 def load_organization(organization_id):
     return Organization.query.get(int(organization_id))
+
+
 
 # Define routes for the Dashboard
 
@@ -56,6 +61,16 @@ def register():
 
         db.session.add(new_organization)
         db.session.commit()
+
+        # print(os.environ.get('MAIL_USERNAME'))
+
+        msg = Message(
+            'New Registration Request!',
+            sender=os.environ.get('MAIL_USERNAME'),
+            recipients=[os.environ.get('MAIL_USERNAME')]
+        )
+        msg.body = f'A new organization - {new_organization.name} - has registered! Go to the Admin dashboard to approve it!'
+        mail.send(msg)
 
         flash('Account has been registered successfully, please wait for approval!', 'success')
         return redirect(url_for('main.login'))
