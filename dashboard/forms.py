@@ -125,15 +125,11 @@ class AddSensorForm(FlaskForm):
     create a new Sensor object in the Database
     """
 
-    """TODO: We need to populate the organisation_id field of the Sensor based on the org of the logged in user."""
-
     serial_number = StringField(label='Serial Number:', validators=[InputRequired(), Length(min=2, max=10)])
     name = StringField(label='Name:', validators=[InputRequired(), Length(min=2, max=50)])
     address = StringField(label='Address Line 1:', validators=[InputRequired(), Length(max=70)])
     city = StringField(label='City:', validators=[InputRequired(), Length(max=30)])
     region = StringField(label='Region:', validators=[InputRequired(), Length(max=30)])
-
-    """TODO: Speak to Val about the code below for checking if the Sensor already exists in the DB."""
 
     def validate_serial_number(self, serial_number):
         if Sensor.query.filter_by(serial_number=serial_number.data).first():
