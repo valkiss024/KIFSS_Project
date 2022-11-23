@@ -3,7 +3,7 @@ from flask_login import login_required, current_user, logout_user, login_user
 
 from dashboard import db, login_manager
 from dashboard.forms import MainLoginForm, OrganizationRegisterForm, AddSensorForm
-from dashboard.models import Organization, User
+from dashboard.models import Organization, User, Sensor
 
 dashboard = Blueprint('main', __name__, template_folder='templates')  # Instantiate the Blueprint object
 
