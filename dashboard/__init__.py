@@ -19,7 +19,7 @@ def create_app(config_file='./settings.py'):
         db.session.commit()
         # ins.json_to_sql()
 
-    # mail.init_app(app)
+    mail.init_app(app)
 
     app.register_blueprint(dashboard)  # Register the Blueprint to access routes
 
