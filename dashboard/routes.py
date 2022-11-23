@@ -3,16 +3,9 @@ import os
 from flask import Blueprint, render_template, flash, redirect, url_for
 from flask_login import login_required, current_user, logout_user, login_user
 from flask_mail import Message
-
-<<<<<<< HEAD
 from dashboard import db, login_manager, mail
-from dashboard.forms import MainLoginForm, OrganizationRegisterForm
-from dashboard.models import Organization, User
-=======
-from dashboard import db, login_manager
 from dashboard.forms import MainLoginForm, OrganizationRegisterForm, AddSensorForm
 from dashboard.models import Organization, User, Sensor
->>>>>>> 301637f452394d518dcc9fd665e4d68f2103a73d
 
 dashboard = Blueprint('main', __name__, template_folder='templates')  # Instantiate the Blueprint object
 
@@ -70,13 +63,13 @@ def register():
 
         # print(os.environ.get('MAIL_USERNAME'))
 
-        msg = Message(
+        """msg = Message(
             'New Registration Request!',
             sender=os.environ.get('MAIL_USERNAME'),
             recipients=[os.environ.get('MAIL_USERNAME')]
         )
         msg.body = f'A new organization - {new_organization.name} - has registered! Go to the Admin dashboard to approve it!'
-        mail.send(msg)
+        mail.send(msg)"""
 
         flash('Account has been registered successfully, please wait for approval!', 'success')
         return redirect(url_for('main.login'))
