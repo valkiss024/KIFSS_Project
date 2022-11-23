@@ -64,7 +64,7 @@ class User(db.Model, UserMixin):
         """Method to decrypt stored password hash and compare it against password provided"""
         return check_password_hash(pwhash=self.password, password=password)
 
-    def get_user_organisation(self):
+    def get_organization_id(self):
         return self.organization_id
 
 
@@ -104,6 +104,9 @@ class Organization(db.Model, UserMixin):
     def validate_password_hash(self, password):
         """Method to decrypt stored password hash and compare it against password provided"""
         return check_password_hash(pwhash=self.password, password=password)
+    
+    def get_organization_id(self):
+        return self.id
 
 
 class Sensor(db.Model):
