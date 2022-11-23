@@ -14,10 +14,10 @@ def create_app(config_file='./settings.py'):
 
     db.init_app(app)
     with app.app_context():
-        db.drop_all()
+        # db.drop_all()
         db.create_all()
         db.session.commit()
-        ins.json_to_sql()
+        # ins.json_to_sql()
 
     app.register_blueprint(dashboard)  # Register the Blueprint to access routes
 
