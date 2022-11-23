@@ -360,6 +360,10 @@ h2 {
     display: inline-block;
 }
 
+#exportbutton *{
+    display: inline-block;
+}
+
 #analyse-physbutton {
     position: relative;
     top: -0.8rem;
@@ -373,6 +377,29 @@ h2 {
     cursor: pointer;
     margin-left: 0.5rem;
     margin-right: 9.2rem;
+}
+
+#export-physbutton {
+    position: relative;
+    top: -0.8rem;
+    width: 216px;
+    height: 44px;
+    background-color: #354CBF;
+    color: #E0EBFB;
+    border-radius: 2rem;
+    text-align: center;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    margin-right: 9.2rem;
+}
+
+#export-physbutton:hover {
+    background-color: #253aa1;
+}
+
+#export-physbutton:active {
+    background-color: #172a87;
 }
 
 #analyse-physbutton:hover {
