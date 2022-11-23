@@ -40,9 +40,6 @@ class OrganizationRegisterForm(BaseRegisterForm):
     country = StringField(label='Country:', validators=[InputRequired(), Length(max=40)])
     postcode = StringField(label='Postcode:', validators=[InputRequired(), Length(max=9)])
 
-    #def validate_email(self, email, model):
-       # super().validate_email(self, email=self.email, model=db.Organization)
-
     def validate_email(self, email):
         if Organization.query.filter_by(email=email.data).first():
             raise ValidationError('Email already exists!')
@@ -76,19 +73,9 @@ class BaseLoginForm(FlaskForm):
                              render_kw={'placeholder': 'Password'})
     submit = SubmitField('Login')
 
-    """def validate_email(self, email, user):
-        Main validation method - checks if the user exists, call the password validator then in case if the user is
-        an organization then checks whether they have been approved
-        if not user:
-            raise StopValidation(f'No profile associated with {email.data} was found!')
-        self._validate_password(password=self.password, user=user)
-        if hasattr(user, 'is_approved'):
-            if not user.is_approved:
-                raise ValidationError(f'Registration request has not been approved yet!')"""
-
     def _validate_password(self, password, user):
-        """Method to match the password provided against the password hash stored in the Database"""
-        if not user.validate_password_hash(password=password.data):
+        # Method to match the password provided against the password hash stored in the Database
+        if not user.validate_password_hash(password=password):
             raise ValidationError('Incorrect password!')
 
 
@@ -106,7 +93,7 @@ class MainLoginForm(BaseLoginForm):
         user = self.get_user()
         if not user:
             raise StopValidation(f'No profile associated with {email.data} was found!')
-        self._validate_password(password=self.password, user=user)
+        self._validate_password(password=self.password.data, user=user)
         if hasattr(user, 'is_approved'):
             if not user.is_approved:
                 raise ValidationError(f'Registration request has not been approved yet!')
