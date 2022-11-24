@@ -17,7 +17,7 @@ def create_app(config_file='./settings.py'):
         db.create_all()
         db.session.commit()
 
-    mail.init_app(app)
+    # mail.init_app(app)
 
     app.register_blueprint(dashboard)  # Register the Blueprint to access routes
 
