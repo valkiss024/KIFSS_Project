@@ -70,9 +70,9 @@ def add_example_sensors(organization):
     for i in range(len(locations)):
         loc = locator.geocode(locations[i][0] + "," + locations[i][1] + "," + locations[i][2])
         if loc is not None:
-            sensors.append(Sensor("A00000000" + str(i), "Flat 1", "Pass", datetime.datetime.now(), organization, locations[i][0], locations[i][1], locations[i][2], loc.latitude, loc.longitude))
+            sensors.append(Sensor("A00000000" + str(i+1), "Flat 1", "Pass", datetime.datetime.now(), organization, locations[i][0], locations[i][1], locations[i][2], loc.latitude, loc.longitude))
         else:
-            sensors.append(Sensor("A00000000" + str(i), "Flat 1", "Pass", datetime.datetime.now(), organization, locations[i][0], locations[i][1], locations[i][2], "", ""))
+            sensors.append(Sensor("A00000000" + str(i+1), "Flat 1", "Pass", datetime.datetime.now(), organization, locations[i][0], locations[i][1], locations[i][2], "", ""))
     
     for i in sensors:
         db.session.merge(i)
