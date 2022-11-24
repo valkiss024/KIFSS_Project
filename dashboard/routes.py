@@ -65,12 +65,12 @@ def register():
 
         # print(os.environ.get('MAIL_USERNAME'))
 
-        msg = Message(
-            'New Registration Request!',
-            sender=os.environ.get('MAIL_USERNAME'),
-            recipients=[os.environ.get('MAIL_USERNAME')]
-        )
-        msg.body = f'A new organization - {new_organization.name} - has registered! Go to the Admin dashboard to approve it!'
+        # msg = Message(
+        #     'New Registration Request!',
+        #     sender=os.environ.get('MAIL_USERNAME'),
+        #     recipients=[os.environ.get('MAIL_USERNAME')]
+        # )
+        # msg.body = f'A new organization - {new_organization.name} - has registered! Go to the Admin dashboard to approve it!'
         # mail.send(msg)
 
         flash('Account has been registered successfully, please wait for approval!', 'success')
