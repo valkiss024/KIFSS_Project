@@ -103,6 +103,7 @@ input::placeholder {
 .markerbox h3 {
     font-size: 1.25rem;
     margin-top: 3rem;
+    font-family: "avenir-black";
 }
 
 .markerbox div > p {
@@ -132,7 +133,7 @@ input::placeholder {
     display: inline-block;
 }
 
-#legend > div > p {
+#legend > div > p, #legend> a > div > p {
     position: relative;
     top: -1.35rem;
     left: 1.5rem;
@@ -140,7 +141,7 @@ input::placeholder {
     font-family: "avenir-black";
 }
 
-#legend > div {
+#legend > div, #legend > a > div {
     margin-left: 4rem;
     position: relative;
     left: -3.25rem;
@@ -184,6 +185,7 @@ input::placeholder {
     background-color: #4A8634;
     border-radius: 40px;
     position: relative;
+    top: 3rem !important;
     left: -2rem !important;
 }
 
