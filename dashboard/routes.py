@@ -2,10 +2,10 @@ import os
 
 from flask import Blueprint, render_template, flash, redirect, url_for
 from flask_login import login_required, current_user, logout_user, login_user
-from flask_mail import Message
-from dashboard import db, login_manager, mail
+from dashboard import db, login_manager
 from dashboard.forms import MainLoginForm, RegisterOrganizationForm, AddSensorForm, AddUserForm, ResetPasswordForm
 from dashboard.models import Organization, User, Sensor
+from dashboard._utils import send_notification
 
 import dashboard.inserts as ins
 
@@ -20,8 +20,6 @@ def load_user(user_id):
 @login_manager.user_loader
 def load_organization(organization_id):
     return Organization.query.get(int(organization_id))
-
-
 
 # Define routes for the Dashboard
 
@@ -63,13 +61,11 @@ def register():
         db.session.add(new_organization)
         db.session.commit()
 
-        """msg = Message(
-            'New Registration Request!',
-            sender=os.environ.get('MAIL_USERNAME'),
-            recipients=[os.environ.get('MAIL_USERNAME')]
-        )
-        msg.body = f'A new organization - {new_organization.name} - has registered! Go to the Admin dashboard to approve it!'
-        mail.send(msg)"""
+        recipient = os.environ.get('MAIL_USERNAME')
+        subject = 'New Registration Request'
+        body = f'A new organization - {new_organization.name} - has registered! Go to the Admin dashboard to approve it!'
+
+        # send_notification([recipient], subject, body)
 
         flash('Account has been registered successfully, please wait for approval!', 'success')
         return redirect(url_for('main.login'))
@@ -80,7 +76,6 @@ def register():
 @dashboard.route('/dashboard')
 @login_required
 def dashboard_():
-    # print(current_user
     #ins.add_example_sensors(current_user.get_organization())
     #ins.json_to_sql()
     return render_template('dashboard.html', user=current_user)
@@ -140,6 +135,12 @@ def add_user():
 
         db.session.add(new_user)
         db.session.commit()
+
+        recipient = new_user.email
+        subject = "Account Created Successfully"
+        body = f'Dear {new_user.last_name}, your automatically generated password for login: {form.password.data}!'
+
+        # send_notification([recipient], subject, body)
 
         flash('New user added successfully! An email notification has been sent out!')
         return redirect(url_for('main.dashboard_'))
