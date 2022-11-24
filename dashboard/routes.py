@@ -71,7 +71,7 @@ def register():
             recipients=[os.environ.get('MAIL_USERNAME')]
         )
         msg.body = f'A new organization - {new_organization.name} - has registered! Go to the Admin dashboard to approve it!'
-        mail.send(msg)
+        # mail.send(msg)
 
         flash('Account has been registered successfully, please wait for approval!', 'success')
         return redirect(url_for('main.login'))
