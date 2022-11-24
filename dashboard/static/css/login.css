@@ -18,7 +18,7 @@
 .box {
     position: relative;
     width: 380px;
-    height: 500px;
+    height: 550px;
     background: #1c1c1c;
     border-radius: 8px;
     overflow: hidden;
@@ -177,4 +177,19 @@ input[type="submit"]:active {
     position: absolute;
     margin-top: 30px;
     margin-left: 30px;
+}
+
+.alert-danger {
+    color: #343a40;
+    background-color: #545b62;
+    border-color: #343a40;
+    font-size: small;
+}
+
+.alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
 }

@@ -12,15 +12,20 @@
         <div class="headbox">
             <img src="../static/Assets/toplogo.png">
         </div>
-        <div>
-            {% for field, errors in form.errors.items() %}
-                <h4 class="alert alert-danger">{{ ', '.join(errors) }}</h4>
-            {% endfor %}
-        </div>
+      
+
+
     </header>
     <div class="login">
     <form class="box" method="post">
          <div class="form">
+
+            <div>
+                {% for field, errors in form.errors.items() %}
+                    <h4 class="alert alert-danger">{{ ', '.join(errors) }}</h4>
+                {% endfor %}
+            </div>
+
              {{ form.hidden_tag() }}  <!--Cross-site request forgery attack-->
             <h1>Register</h1>
             <h2>Please Register your Organization</h2>
@@ -54,7 +59,7 @@
                 <span>{{ form.password.label }}</span>
                 <i></i>
             </div>
-            <div class="inputBox">
+            <div class="inputBox" id="conpassword">
                 <!--<input type="password" required="required">-->
                 {{ form.confirm_password }}
                 <span>{{ form.confirm_password.label }}</span>

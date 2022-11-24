@@ -18,7 +18,7 @@
 .box {
     position: relative;
     width: 380px;
-    height: 750px;
+    height: 800px;
     background: #1c1c1c;
     border-radius: 8px;
     overflow: hidden;
@@ -85,6 +85,10 @@
     width: 300px;
     margin-top: 20px;
 }
+
+#conpassword {
+    margin-bottom: 5px;
+}
 .inputBox input {
     position: relative;
     width: 100%;
@@ -133,6 +137,7 @@
 .links {
     display: flex;
     justify-content: center;
+    margin-top: -10px;
 }
 .links a {
     margin: 10px 0;
@@ -178,4 +183,19 @@ input[type="submit"]:active {
     position: absolute;
     margin-top: 30px;
     margin-left: 30px;
+}
+
+.alert-danger {
+    color: #343a40;
+    background-color: #545b62;
+    border-color: #343a40;
+    font-size: small;
+}
+
+.alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
 }
