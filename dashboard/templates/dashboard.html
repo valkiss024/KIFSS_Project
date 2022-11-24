@@ -66,6 +66,9 @@
 <a href="{{ url_for('main.logout') }}">Logout</a>
 <script>
 
+    const obj = JSON.parse ('{"name": "Flat 1", "address": "215 Fairview Drive", "region": "Aberdeenshire", "longitude": "-2.09", "organization_id": "1", "serial_number": "A000000001", "city": "Aberdeen", "latitude": "57.153"}');
+
+
     //generate markers
     const geojson = {
         "type": "FeatureCollection",
@@ -73,39 +76,13 @@
             {
                 "type": "Feature",
                 "properties": {
-                    "title": "r12",
-                    "description": "hello"
+                    "title": obj.address,
+                    "description": " "
                 },
                 "geometry": {
                     "coordinates": [
-                    -2.090580690399804,
-                    57.15374729361227
-                    ],
-                    "type": "Point"
-                }
-            },
-            {
-                "type": "Feature",
-                "properties": {
-                    "title": "y6",
-                },
-                "geometry": {
-                    "coordinates": [
-                    -2.112114816216888,
-                    57.150292537320894
-                    ],
-                    "type": "Point"
-                }
-            },
-            {
-                "type": "Feature",
-                "properties": {
-                    "title": "g4",
-                },
-                "geometry": {
-                    "coordinates": [
-                    -2.1084752456557396,
-                    57.13696402623276
+                    obj.longitude,
+                    obj.latitude
                     ],
                     "type": "Point"
                 }
@@ -128,21 +105,41 @@
         // create a HTML element for each feature
         const el = document.createElement('div');
 
-        if (feature.properties.title == "g4") {
-            el.className = 'marker g4';
-        } else if (feature.properties.title == "y6") {
-            el.className = 'marker y6';
-        } else if (feature.properties.title == "r12") {
-            el.className = 'marker r12';
-        }
+        //if () {
         
+        //} else if () {
+
+        //} else {
+            el.className = 'marker g1';
+        //}
+
         // make a marker for each feature and add it to the map
         new mapboxgl.Marker(el)
         .setLngLat(feature.geometry.coordinates)
         .setPopup(
         new mapboxgl.Popup({ offset: 25 }) // add popups
             .setHTML(
-            `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>`
+            `<div class="markerbox"><h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>
+                <div id="legend">
+                    <div id="pass-legend">
+                        <div id="pass-dot"></div>
+                        <p id="pass-text">Pass</p>
+                </div>
+                    <div id="used-legend">
+                        <div id="used-dot"></div>
+                        <p id="used-text">Used</p>
+                </div>
+                    <div id="fail-legend">
+                        <div id="fail-dot"></div>
+                        <p id="fail-text">Fail</p>
+                </div>
+                <div id="pop-device">
+                    <p id="pop-devicetext">Flat 1</p>
+                </div>
+                    <div id="analyse-physbutton">
+                        <p id="analysebutttext">See all</p>
+                    </div>
+            </div>`
             )
         )
         .addTo(map);
