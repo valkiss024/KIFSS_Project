@@ -1,0 +1,412 @@
+.analysis-screen-container {
+  min-height: 100vh;
+}
+.analysis-screen-analysis-screen {
+  width: 100%;
+  height: 1083px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-color: transparent;
+  background-color: var(--dl-color-default-webbg);
+}
+.analysis-screen-rectangle67 {
+  top: 0px;
+  left: 0px;
+  width: 1512px;
+  height: 1488px;
+  position: absolute;
+  border-color: transparent;
+}
+.analysis-screen-rectangle79 {
+  top: 114px;
+  left: 177px;
+  width: 1098px;
+  height: 194px;
+  position: absolute;
+  border-color: transparent;
+}
+.analysis-screen-group85 {
+  top: 0px;
+  left: 0px;
+  width: 1512px;
+  height: 308px;
+  display: flex;
+  padding: 0;
+  position: absolute;
+  align-self: auto;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+  border-style: none;
+  border-width: 0;
+  margin-right: 0;
+  border-radius: 0px 0px 0px 0px;
+  margin-bottom: 0;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color: rgba(224, 235, 251, 1);
+}
+.analysis-screen-bicloudfill {
+  top: 118px;
+  left: 501px;
+  width: 56px;
+  height: 46px;
+  position: absolute;
+}
+.analysis-screen-group105 {
+  top: 213px;
+  left: 243px;
+  width: 328px;
+  height: 40px;
+  display: flex;
+  padding: 0;
+  position: absolute;
+  align-self: auto;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+  border-style: none;
+  border-width: 0;
+  margin-right: 0;
+  border-radius: 0px 0px 0px 0px;
+  margin-bottom: 0;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color: transparent;
+}
+.analysis-screen-text {
+  color: var(--dl-color-default-logodarkblue);
+  height: auto;
+  position: absolute;
+  font-size: 32px;
+  align-self: auto;
+  font-style: Regular;
+  text-align: left;
+  font-family: Source Sans Pro;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.analysis-screen-vector {
+  top: 6px;
+  left: 300px;
+  width: 28px;
+  height: 28px;
+  position: absolute;
+}
+.analysis-screen-text02 {
+  top: 100px;
+  left: 243px;
+  color: var(--dl-color-default-logodarkblue);
+  height: auto;
+  position: absolute;
+  font-size: 64px;
+  align-self: auto;
+  font-style: Black;
+  text-align: left;
+  font-family: Avenir;
+  font-weight: 900;
+  line-height: normal;
+  font-stretch: normal;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.analysis-screen-rectangle66 {
+  top: 0px;
+  left: 0px;
+  width: 100px;
+  height: 982px;
+  position: absolute;
+  border-color: transparent;
+  border-radius: 0 24px 24px 0;
+}
+.analysis-screen-group28 {
+  top: 32px;
+  left: 32px;
+  width: 36.218902587890625px;
+  height: 42.729705810546875px;
+  display: flex;
+  padding: 0;
+  position: absolute;
+  align-self: auto;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+  border-style: none;
+  border-width: 0;
+  margin-right: 0;
+  border-radius: 0px 0px 0px 0px;
+  margin-bottom: 0;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color: transparent;
+}
+.analysis-screen-vector1 {
+  top: 0px;
+  left: 0px;
+  width: 36px;
+  height: 25px;
+  position: absolute;
+}
+.analysis-screen-group20 {
+  top: 32px;
+  left: 0.9796142578125px;
+  width: 35.02033233642578px;
+  height: 10.729704856872559px;
+  display: flex;
+  padding: 0;
+  position: absolute;
+  align-self: auto;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+  border-style: none;
+  border-width: 0;
+  border-radius: 0px 0px 0px 0px;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color: transparent;
+}
+.analysis-screen-k-i-f-s-s {
+  top: 0px;
+  left: 0px;
+  width: 35px;
+  height: 11px;
+  position: absolute;
+  box-sizing: content-box;
+}
+.analysis-screen-text04 {
+  top: 175px;
+  left: 30px;
+  color: var(--dl-color-default-logodarkblue);
+  width: 40px;
+  height: auto;
+  position: absolute;
+  font-size: 12px;
+  align-self: auto;
+  font-style: Black;
+  text-align: center;
+  font-family: Avenir;
+  font-weight: 900;
+  line-height: normal;
+  font-stretch: normal;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.analysis-screen-component9 {
+  top: 139px;
+  left: 18px;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-color: transparent;
+}
+.analysis-screen-ellipse74 {
+  top: 0px;
+  left: 0px;
+  width: 64px;
+  height: 64px;
+  opacity: 0.00;
+  position: absolute;
+  border-color: transparent;
+}
+.analysis-screen-text06 {
+  top: 36px;
+  left: 12px;
+  color: var(--dl-color-default-webbg);
+  width: 40px;
+  height: auto;
+  position: absolute;
+  font-size: 12px;
+  align-self: auto;
+  font-style: Black;
+  text-align: center;
+  font-family: Avenir;
+  font-weight: 900;
+  line-height: normal;
+  font-stretch: normal;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.analysis-screen-home-off {
+  top: 6px;
+  left: 13px;
+  width: 38px;
+  height: 38px;
+  position: absolute;
+}
+.analysis-screen-component10 {
+  top: 227px;
+  left: 18px;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-color: transparent;
+}
+.analysis-screen-ellipse79 {
+  top: 0px;
+  left: 0px;
+  width: 64px;
+  height: 64px;
+  opacity: 0.00;
+  position: absolute;
+  border-color: transparent;
+}
+.analysis-screen-text08 {
+  top: 36px;
+  left: 8px;
+  color: var(--dl-color-default-webbg);
+  width: 48px;
+  height: auto;
+  position: absolute;
+  font-size: 12px;
+  align-self: auto;
+  font-style: Black;
+  text-align: center;
+  font-family: Avenir;
+  font-weight: 900;
+  line-height: normal;
+  font-stretch: normal;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.analysis-screen-frame03 {
+  top: 8px;
+  left: 15px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  overflow: hidden;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-color: transparent;
+}
+.analysis-screen-bicloudfill1 {
+  top: 5px;
+  left: 5px;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+}
+.analysis-screen-component11 {
+  top: 315px;
+  left: 18px;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-color: transparent;
+}
+.analysis-screen-ellipse80 {
+  top: 0px;
+  left: 0px;
+  width: 64px;
+  height: 64px;
+  opacity: 0.00;
+  position: absolute;
+  border-color: transparent;
+}
+.analysis-screen-text10 {
+  top: 36px;
+  left: 8px;
+  color: var(--dl-color-default-webbg);
+  width: 48px;
+  height: auto;
+  position: absolute;
+  font-size: 12px;
+  align-self: auto;
+  font-style: Black;
+  text-align: center;
+  font-family: Avenir;
+  font-weight: 900;
+  line-height: normal;
+  font-stretch: normal;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.analysis-screen-frame02 {
+  top: 8px;
+  left: 15px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  overflow: hidden;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-color: transparent;
+}
+.analysis-screen-bicloudfill2 {
+  top: 5px;
+  left: 0px;
+  width: 34px;
+  height: 24px;
+  position: absolute;
+}
+.analysis-screen-component12 {
+  top: 403px;
+  left: 18px;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-color: transparent;
+}
+.analysis-screen-ellipse77 {
+  top: 0px;
+  left: 0px;
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  border-color: transparent;
+}
+.analysis-screen-text12 {
+  top: 36px;
+  left: 8px;
+  color: var(--dl-color-default-logodarkblue);
+  width: 48px;
+  height: auto;
+  position: absolute;
+  font-size: 12px;
+  align-self: auto;
+  font-style: Black;
+  text-align: center;
+  font-family: Avenir;
+  font-weight: 900;
+  line-height: normal;
+  font-stretch: normal;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.analysis-screen-account-on {
+  top: 13px;
+  left: 20px;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+}
