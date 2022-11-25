@@ -7,8 +7,8 @@ import datetime
 triggers = os.path.abspath('dashboard/data/trigger')
 selfchecks = os.path.abspath('dashboard/data/selfcheck')
 
-# engine = db.create_engine("mysql+pymysql://root@localhost/kifss")
-# connection = engine.connect()
+engine = db.create_engine("mysql+pymysql://root@localhost/kifss")
+connection = engine.connect()
 
 def json_to_sql():
 
