@@ -5,9 +5,7 @@ from flask_login import login_required, current_user, logout_user, login_user
 from dashboard import db, login_manager
 from dashboard.forms import MainLoginForm, RegisterOrganizationForm, AddSensorForm, AddUserForm, ResetPasswordForm
 from dashboard.models import Organization, User, Sensor
-from dashboard._utils import send_notification
-
-import dashboard.inserts as ins
+from dashboard._utils import json_to_sql, add_example_sensors, get_sensors, get_self_checks, get_triggers, send_notification
 
 dashboard = Blueprint('main', __name__, template_folder='templates')  # Instantiate the Blueprint object
 
@@ -77,19 +75,37 @@ def register():
 @dashboard.route('/dashboard')
 @login_required
 def dashboard_():
-    # print(current_user
-    # ins.add_example_sensors(current_user.get_organization_id())
-    # ins.json_to_sql()
-    # ins.get_self_checks(current_user.get_organization_id())
-    # data = ins.get_sensors(current_user.get_organization_id())
-    # print(json.dumps(data))
-    return render_template('dashboard.html', user=current_user)
+    print(current_user)
+    add_example_sensors(current_user.get_organization_id())
+    json_to_sql()
+    data = get_sensors(current_user.get_organization_id())
+    print(json.dumps(data))
+    return render_template('dashboard.html', user=current_user, data=json.dumps(data))
 
 
 @dashboard.route('/devices')
 @login_required
 def devices():
-    return render_template('devices.html')
+
+    selfchecks = get_self_checks(current_user.get_organization_id())
+    d = {}
+    for i in selfchecks["selfchecks"]:
+        key = i["serial_number"]
+        if key not in d.keys():
+            d[key] = []
+            
+        d[key].append(i)
+
+    # triggers = get_triggers(current_user.get_organization_id())
+    # c = {}
+    # for i in triggers["triggers"]:
+    #     key = i["serial_number"]
+    #     if key not in c.keys():
+    #         c[key] = []
+            
+    #     c[key].append(i)
+
+    return render_template('devices.html', selfchecks=json.dumps(d))
 
 
 @dashboard.route('/analysis')

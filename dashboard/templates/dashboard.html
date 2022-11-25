@@ -63,6 +63,12 @@
 
     const obj = JSON.parse ('{"name": "Flat 1", "address": "215 Fairview Drive", "region": "Aberdeenshire", "longitude": "-2.09", "organization_id": "1", "serial_number": "A000000001", "city": "Aberdeen", "latitude": "57.153"}');
 
+    const a = {{ data|safe }};
+
+    const b = ["Test", "Array"]
+    console.log(a["data"][0]["latitude"]);
+    console.log(a["data"][0]["longitude"]);
+    console.log(b);
 
     //generate markers
     const geojson = {
@@ -71,17 +77,143 @@
             {
                 "type": "Feature",
                 "properties": {
-                    "title": obj.address,
+                    "title": a["data"][0]["address"],
                     "description": " "
                 },
                 "geometry": {
                     "coordinates": [
-                    obj.longitude,
-                    obj.latitude
+                    a["data"][0]["longitude"],
+                    a["data"][0]["latitude"]
+                    ],
+                    "type": "Point"
+                },
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": a["data"][1]["address"],
+                    "description": " "
+                },
+                "geometry": {
+                    "coordinates": [
+                    a["data"][1]["longitude"],
+                    a["data"][1]["latitude"]
+                    ],
+                    "type": "Point"
+                },
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": a["data"][2]["address"],
+                    "description": " "
+                },
+                "geometry": {
+                    "coordinates": [
+                    a["data"][2]["longitude"],
+                    a["data"][2]["latitude"]
+                    ],
+                    "type": "Point"
+                },
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": a["data"][3]["address"],
+                    "description": " "
+                },
+                "geometry": {
+                    "coordinates": [
+                    a["data"][3]["longitude"],
+                    a["data"][3]["latitude"]
+                    ],
+                    "type": "Point"
+                },
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": a["data"][4]["address"],
+                    "description": " "
+                },
+                "geometry": {
+                    "coordinates": [
+                    a["data"][4]["longitude"],
+                    a["data"][4]["latitude"]
+                    ],
+                    "type": "Point"
+                },
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": a["data"][5]["address"],
+                    "description": " "
+                },
+                "geometry": {
+                    "coordinates": [
+                    a["data"][5]["longitude"],
+                    a["data"][5]["latitude"]
+                    ],
+                    "type": "Point"
+                },
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": a["data"][6]["address"],
+                    "description": " "
+                },
+                "geometry": {
+                    "coordinates": [
+                    a["data"][6]["longitude"],
+                    a["data"][6]["latitude"]
+                    ],
+                    "type": "Point"
+                },
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": a["data"][7]["address"],
+                    "description": " "
+                },
+                "geometry": {
+                    "coordinates": [
+                    a["data"][7]["longitude"],
+                    a["data"][7]["latitude"]
+                    ],
+                    "type": "Point"
+                },
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": a["data"][8]["address"],
+                    "description": " "
+                },
+                "geometry": {
+                    "coordinates": [
+                    a["data"][8]["longitude"],
+                    a["data"][8]["latitude"]
+                    ],
+                    "type": "Point"
+                },
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": a["data"][9]["address"],
+                    "description": " "
+                },
+                "geometry": {
+                    "coordinates": [
+                    a["data"][9]["longitude"],
+                    a["data"][9]["latitude"]
                     ],
                     "type": "Point"
                 }
-            }
+            },
         ]
         };
 
@@ -105,7 +237,7 @@
         //} else if () {
 
         //} else {
-            el.className = 'marker g1';
+        el.className = 'marker g1';
         //}
 
         // make a marker for each feature and add it to the map
@@ -131,7 +263,7 @@
                     <div id="pop-device">
                         <p id="pop-devicetext">Flat 1</p>
                     </div>
-                    <a href="{{ url_for('main.devices') }}">
+                    <a href="./devices.html">
                         <div id="analyse-physbutton">
                             <p id="analysebutttext">See all</p>
                         </div>
