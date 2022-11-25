@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <title>Dashboard</title>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css' rel='stylesheet' />
+
+    <link rel="stylesheet" href="./static/font/stylesheet.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/menu.css">
+    <link rel="stylesheet" href="./css/devices.css">
+    <link rel="stylesheet" href="./css/analysis.css">
+</head>
+<body>
+    <div id="side-menu">
+        <div id="logo-menu">
+            <img src="./static/logo.png" alt="">
+        </div>
+        <a href="./dashboard.html">
+            <div class="menu-item item-off">
+                <div class="menu-icon">
+                    <img src="./static/homeOff.png" alt="">
+                </div>
+                <p class="menu-text">Home</p>
+            </div>
+        </a>
+        <a href="./devices.html">
+            <div class="menu-item item-off">
+                <div class="menu-icon">
+                    <img src="./static/03.png" alt="">
+                </div>
+                <p class="menu-text">Devices</p>
+            </div>
+        </a>
+        <a href="./analysis.html">
+            <div id="on" class="menu-item">
+                <div class="menu-icon">
+                    <img src="./static/analysisOn.png" alt="">
+                </div>
+                <p id="text-on" class="menu-text">Analysis</p>
+            </div>
+        </a>
+        <div class="menu-item item-off">
+            <div class="menu-icon">
+                <img src="./static/01.png" alt="">
+            </div>
+            <p class="menu-text">Account</p>
+        </div>
+    </div>
+    <div id="content">
+        <div id="head">
+            <div id="head-title">
+                <h1>Analysis</h1>
+                <img src="./static/analysis-large.png" alt="">
+            </div>
+            <div id="filter-bar">
+                <div id="year-selection">
+                    <label>
+                        <input type="radio" name="options"/>
+                        <span>2021</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="options"/>
+                        <span>2022</span>
+                    </label>
+                </div>
+                <div id="legend">
+                    <div id="pass-legend">
+                        <div id="pass-dot"></div>
+                        <p id="pass-text">Pass</p>
+                    </div>
+                    <div id="used-legend">
+                        <div id="used-dot"></div>
+                        <p id="used-text">Used</p>
+                    </div>
+                    <div id="fail-legend">
+                        <div id="fail-dot"></div>
+                        <p id="fail-text">Fail</p>
+                    </div>
+                </div>
+                <div id="inputfilter">
+                    <img src="./static/filter.png" alt="">
+                </div>
+            </div>
+            <div id="bluebar"></div>
+        </div>
+    </div>
+<script>
+
+</script>
+</body>
+</html>

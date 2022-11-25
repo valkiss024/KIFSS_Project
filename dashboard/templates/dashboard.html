@@ -152,26 +152,3 @@
 </script>
 </body>
 </html>
-
-
-<!--
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        {% for category, message in messages %}
-            {% if category == 'error' %}
-                <h5 class="alert alert-danger">{{ message }}</h5>
-            {% elif category == 'info' %}
-                <h5 class="alert alert-info">{{ message }}</h5>
-            {% else %}
-                <h5 class="alert alert-success">{{ message }}</h5>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-{% endwith %}
-{% if user.__class__ == 'app.User' %}
-    <h2>Welcome to your Dashboard, {{ user.first_name }}!</h2>
-{% else %}
-    <h2>Welcome to the Dashboard for {{ user.name }}</h2>
-{% endif %}
-
-<a href="{{ url_for('main.logout') }}">Logout</a> --->
