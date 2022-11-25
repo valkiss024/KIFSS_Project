@@ -5,24 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from .extensions import db
 
 
-# Define user loaders for login manager
-
-"""@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
-
-
-@login_manager.user_loader
-def load_organization(organization_id):
-    return Organization.query.get(int(organization_id))
-
-
-@login_manager.user_loader
-def load_admin(admin_id):
-    return AdminUser.query.get(int(admin_id))"""
-
 # Define models --> tables in the DB
-
 
 class User(db.Model, UserMixin):
     """
@@ -103,7 +86,7 @@ class Organization(db.Model, UserMixin):
     def validate_password_hash(self, password):
         """Method to decrypt stored password hash and compare it against password provided"""
         return check_password_hash(pwhash=self.password, password=password)
-    
+
     def get_organization_id(self):
         return self.id
 
@@ -200,13 +183,9 @@ class Trigger(db.Model):
         return f'Trigger({self.sensor.serial_number}, {self.status}, {self.date}. {self.assessed})'
 
 
-
 class AdminUser(db.Model, UserMixin):
     """
     The AdminUser model, defines a User in the Database who is an Admin to the site
-
-    NOT YET IMPLEMENTED TO THE SITE!
-
     """
 
     id = db.Column(db.Integer, primary_key=True)

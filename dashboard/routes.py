@@ -2,10 +2,10 @@ import os, json
 
 from flask import Blueprint, render_template, flash, redirect, url_for
 from flask_login import login_required, current_user, logout_user, login_user
-from flask_mail import Message
-from dashboard import db, login_manager, mail
-from dashboard.forms import MainLoginForm, OrganizationRegisterForm, AddSensorForm
+from dashboard import db, login_manager
+from dashboard.forms import MainLoginForm, RegisterOrganizationForm, AddSensorForm, AddUserForm, ResetPasswordForm
 from dashboard.models import Organization, User, Sensor
+from dashboard._utils import send_notification
 
 import dashboard.inserts as ins
 
@@ -21,8 +21,6 @@ def load_user(user_id):
 def load_organization(organization_id):
     return Organization.query.get(int(organization_id))
 
-
-
 # Define routes for the Dashboard
 
 
@@ -36,7 +34,7 @@ def login():
     login_form = MainLoginForm()
     if login_form.validate_on_submit():
         user = login_form.get_user()
-        print(login_user(user, remember=True))
+        print(login_user(user))
         print(current_user)
 
         return redirect(url_for('main.dashboard_'))
@@ -49,7 +47,7 @@ def register():
     """
     View function to handle the logic behind creating new organizations
     """
-    register_form = OrganizationRegisterForm()
+    register_form = RegisterOrganizationForm()
     if register_form.validate_on_submit():
         new_organization = Organization(
             name=register_form.name.data,
@@ -63,15 +61,11 @@ def register():
         db.session.add(new_organization)
         db.session.commit()
 
-        # print(os.environ.get('MAIL_USERNAME'))
+        recipient = os.environ.get('MAIL_USERNAME')
+        subject = 'New Registration Request'
+        body = f'A new organization - {new_organization.name} - has registered! Go to the Admin dashboard to approve it!'
 
-        # msg = Message(
-        #     'New Registration Request!',
-        #     sender=os.environ.get('MAIL_USERNAME'),
-        #     recipients=[os.environ.get('MAIL_USERNAME')]
-        # )
-        # msg.body = f'A new organization - {new_organization.name} - has registered! Go to the Admin dashboard to approve it!'
-        # mail.send(msg)
+        # send_notification([recipient], subject, body)
 
         flash('Account has been registered successfully, please wait for approval!', 'success')
         return redirect(url_for('main.login'))
@@ -127,3 +121,50 @@ def addsensor():
         return redirect(url_for('main.dashboard_'))
 
     return render_template('account.html', form=sensor_form)
+
+
+@dashboard.route('/adduser', methods=['GET', 'POST'])
+@login_required
+def add_user():
+    form = AddUserForm()
+    if form.validate_on_submit():
+        new_user = User(
+            email=form.email.data,
+            first_name=form.first_name.data,
+            last_name=form.last_name.data,
+            contact_number=form.contact_number.data,
+            organization_id=current_user.id
+        )
+        new_user.create_password_hash(form.password.data)
+
+        db.session.add(new_user)
+        db.session.commit()
+
+        recipient = new_user.email
+        subject = "Account Created Successfully"
+        body = f'Dear {new_user.last_name}, your automatically generated password for login: {form.password.data}!'
+
+        # send_notification([recipient], subject, body)
+
+        flash('New user added successfully! An email notification has been sent out!')
+        return redirect(url_for('main.dashboard_'))
+
+    return render_template('add_user.html', form=form)
+
+
+@dashboard.route('/resetpassword', methods=['GET', 'POST'])
+@login_required
+def reset_password():
+    form = ResetPasswordForm(current_user.__class__.__name__, current_user)
+    if form.validate_on_submit():
+
+        current_user.create_password_hash(form.new_password.data)
+
+        db.session.merge(current_user)
+        db.session.commit()
+
+        logout_user()
+        flash('Password updated successfully! Please log in again!')
+        return redirect(url_for('main.login'))
+
+    return render_template('reset_pass.html', form=form)

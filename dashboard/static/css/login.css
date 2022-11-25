@@ -180,9 +180,14 @@ input[type="submit"]:active {
 }
 
 .alert-danger {
-    color: #343a40;
-    background-color: #545b62;
-    border-color: #343a40;
+    font-size: small;
+}
+
+.alert-info {
+    font-size: small;
+}
+
+.alert-success {
     font-size: small;
 }
 

@@ -2,9 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
     <title>Dashboard</title>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css' rel='stylesheet' />
+
+    <link rel="stylesheet" href="./static/font/stylesheet.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/menu.css">
+    <link rel="stylesheet" href="./css/map-dash.css">
 </head>
 <body>
+    <div id="side-menu">
+        <div id="logo-menu">
+            <img src="./static/logo.png" alt="">
+        </div>
+        <a href="./dashboard.html">
+            <div id="on" class="menu-item">
+                <div class="menu-icon">
+                    <img src="./static/04.png" alt="">
+                </div>
+                <p id="text-on" class="menu-text">Home</p>
+            </div>
+        </a>
+        <a href="./devices.html">
+            <div class="menu-item item-off">
+                <div class="menu-icon">
+                    <img src="./static/03.png" alt="">
+                </div>
+                <p class="menu-text">Devices</p>
+            </div>
+        </a>
+        <a href="./analysis.html">
+            <div class="menu-item item-off">
+                <div class="menu-icon">
+                    <img src="./static/02.png" alt="">
+                </div>
+                <p class="menu-text">Analysis</p>
+            </div>
+        </a>
+        <div class="menu-item item-off">
+            <div class="menu-icon">
+                <img src="./static/01.png" alt="">
+            </div>
+            <p class="menu-text">Account</p>
+        </div>
+    </div>
+
+    <div id="toolbar">
+        <input type="text" id="searchbar" name="searchbar" placeholder="Search...">
+        <img src="./static/filter.png" alt="">
+    </div>
+
+    <div id="map"></div>
 {% if user.__class__ == 'app.User' %}
     <h2>Welcome to your Dashboard, {{ user.first_name }}!</h2>
 {% else %}
@@ -12,6 +64,91 @@
 {% endif %}
 
 <a href="{{ url_for('main.logout') }}">Logout</a>
+<script>
 
+    const obj = JSON.parse ('{"name": "Flat 1", "address": "215 Fairview Drive", "region": "Aberdeenshire", "longitude": "-2.09", "organization_id": "1", "serial_number": "A000000001", "city": "Aberdeen", "latitude": "57.153"}');
+
+
+    //generate markers
+    const geojson = {
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Feature",
+                "properties": {
+                    "title": obj.address,
+                    "description": " "
+                },
+                "geometry": {
+                    "coordinates": [
+                    obj.longitude,
+                    obj.latitude
+                    ],
+                    "type": "Point"
+                }
+            }
+        ]
+        };
+
+    //map display
+	mapboxgl.accessToken = 'pk.eyJ1IjoiYXJhd2VlIiwiYSI6ImNsYXJodDQ3bTA3NXozcm92eHhpNm52N3IifQ.PlZBhXse5nVgcTK-hkkYjw';
+    const map = new mapboxgl.Map({
+        container: 'map', // container ID
+            // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: 'mapbox://styles/arawee/clargyo7g008f14nxhl41qw1p', // style URL
+        center: [-2.1, 57.15], // starting position [lng, lat]
+        zoom: 9 // starting zoom
+    });
+
+    // add markers to map
+    for (const feature of geojson.features) {
+        // create a HTML element for each feature
+        const el = document.createElement('div');
+
+        //if () {
+        
+        //} else if () {
+
+        //} else {
+            el.className = 'marker g1';
+        //}
+
+        // make a marker for each feature and add it to the map
+        new mapboxgl.Marker(el)
+        .setLngLat(feature.geometry.coordinates)
+        .setPopup(
+        new mapboxgl.Popup({ offset: 25 }) // add popups
+            .setHTML(
+            `<div class="markerbox"><h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>
+                <div id="legend">
+                    <div id="pass-legend">
+                        <div id="pass-dot"></div>
+                        <p id="pass-text">Pass</p>
+                    </div>
+                    <div id="used-legend">
+                        <div id="used-dot"></div>
+                        <p id="used-text">Used</p>
+                    </div>
+                    <div id="fail-legend">
+                        <div id="fail-dot"></div>
+                        <p id="fail-text">Fail</p>
+                    </div>
+                    <div id="pop-device">
+                        <p id="pop-devicetext">Flat 1</p>
+                    </div>
+                    <a href="./devices.html">
+                        <div id="analyse-physbutton">
+                            <p id="analysebutttext">See all</p>
+                        </div>
+                    </a>
+                </div>
+            </div>`
+            )
+        )
+        .addTo(map);
+    }
+
+
+</script>
 </body>
 </html>

@@ -25,18 +25,18 @@
                     {% if messages %}
                         {% for category, message in messages %}
                             {% if category == 'error' %}
-                                <h4 class="alert alert-danger">{{ message }}</h4>
+                                <h5 class="alert alert-danger">{{ message }}</h5>
                             {% elif category == 'info' %}
-                                <h4 class="alert alert-info">{{ message }}</h4>
+                                <h5 class="alert alert-info">{{ message }}</h5>
                             {% else %}
-                                <h4 class="alert alert-success">{{ message }}</h4>
+                                <h5 class="alert alert-success">{{ message }}</h5>
                             {% endif %}
                         {% endfor %}
                     {% endif %}
                 {% endwith %}
         
                 {% for field, errors in form.errors.items() %}
-                    <h4 class="alert alert-danger">{{ ', '.join(errors) }}</h4>
+                    <h5 class="alert alert-danger">{{ ', '.join(errors) }}</h5>
                 {% endfor %}
             </div>
 

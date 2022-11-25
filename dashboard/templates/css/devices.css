@@ -1,0 +1,424 @@
+#content {
+    margin-left: 100px;
+}
+
+#head {
+    margin-left: 63px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: fixed;
+    top: 0;
+    padding: 0rem 5rem;
+    background-color: #E0EBFB;
+    z-index: 100;
+}
+
+#head-title {
+    padding-top: 3rem;
+    padding-bottom: 24px;
+}
+
+#head-title * {
+    margin: 0;
+    display: inline-block;
+}
+
+#head-title img {
+    height: auto;
+    width: 64px;
+    margin-top: 1.2rem;
+    margin-left: 4rem;
+}
+
+#filter-bar {
+    display: inline-block;
+    margin-top: 1rem;
+    margin-bottom: -3rem !important;
+}
+
+#filter-bar > *, #legend > div, #legend > div > *, #inputfilter > * {
+    float: left;
+}
+
+input[type="radio"] {
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 120px;
+    height: 44px;
+    margin: 0;
+    border-radius: 32px;
+    border: 4px solid #354CBF;
+    -webkit-appearance: none; /*to disable the default appearance of radio button*/
+    -moz-appearance: none;
+}
+  
+input[type="radio"]:focus { /*no need, if you don't disable default appearance*/
+    outline: none; /*to remove the square border on focus*/
+}
+  
+input[type="radio"]:checked { /*no need, if you don't disable default appearance*/
+    background-color: #354CBF;
+}
+  
+input[type="radio"]:checked ~ span:first-of-type {
+    color: white;
+}
+  
+label span:first-of-type {
+    position: relative;
+    left: -5.3rem;
+    top: -1rem;
+    font-size: 18px;
+    color: #354CBF;
+}
+  
+label {
+    margin-right: -2rem;
+}
+
+label span {
+    transition: color 0.3s;
+    position: relative;
+    top: -12px;
+    cursor: pointer;
+}
+
+label:last-of-type {
+    margin-right: 0rem;
+}
+
+#legend {
+    margin-bottom: 2rem;
+}
+
+#legend > div > div {
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    margin-top: 10px;
+}
+#legend > div > p {
+    margin: 0.79rem 2rem 0 1rem;
+}
+#pass-dot {
+    background-color: #4A8634;
+}
+#used-dot {
+    background-color: #D19C33;
+}
+#fail-dot {
+    background-color: #D13333;
+}
+#inputfilter > * {
+    margin-top: 0 !important;
+}
+
+#inputfilter {
+    z-index: 1000;
+    width: 389px;
+    height: 8rem;
+    background-color: #E0EBFB;
+    z-index: 100;
+}
+
+#searchbar {
+    width: 256px;
+    height: 44px;
+    vertical-align: middle;
+    color: #354CBF;
+    border: #354CBF 4px solid;
+    border-radius: 40px;
+    background-color: #E0EBFB;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-family: "avenir-black";
+    font-size: 14px;
+}
+input::placeholder {
+    color: #8896de;
+}
+
+#inputfilter img {
+    width: 44px;
+    height: 44px;
+    margin: 0 24px;
+    display: inline-block;
+}
+
+#year-selection {
+    padding-bottom: 1rem;
+}
+
+#bluebar {
+    height: 4px;
+    width: 115%;
+    border-radius: 4px;
+    left: -5rem;
+    margin-right: -20rem;
+    position: relative;
+    z-index: 100;
+    background-color: #354CBF;
+    overflow-x: hidden !important;
+}
+
+.devicesfix img {
+    width: 24px;
+    height: 24px;
+    margin: 0.78rem 1.5rem 0 1.5rem;
+}
+.devicesfix p {
+    margin: 1px 0 0 0;
+}
+
+#devices {
+    position: relative;
+    top: 18.5rem;
+    left: 4rem;
+}
+
+.address-head {
+    max-width: 1092px;
+    margin-bottom:1rem;
+}
+.address-head > * {
+    display: inline-block;
+}
+
+.devices-head-checkbox {
+    width: 55px;
+    height: 55px;
+    border-radius: 2rem;
+    transition: border 0.2s, background-color 0.2s;
+    background-size: 27px;
+    cursor: pointer;
+}
+
+.devices-checkbox {
+    width: 32px;
+    height: 32px;
+    border-radius: 2rem;
+    transition: border 0.2s, background-color 0.2s;
+    background-size: 14px;
+    margin-right: 0;
+    cursor: pointer;
+}
+
+.check-on {
+    background-color: #354CBF;
+    background-image: url(../static/check-on.png);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat;
+    border: solid #354CBF 4px;
+    box-sizing: border-box;
+}
+
+.check-off {
+    background-color: #00000000;
+    border: dashed #354CBF 4px;
+    box-sizing: border-box;
+}
+
+.address-green {
+    width: 55px;
+    height: 55px;
+    color:#E0EBFB;
+    text-align: center;
+    background-color: #4A8634;
+    border-radius: 2rem;
+    position: relative;
+    top: -1rem;
+    left: -5px;
+    margin-left: 1.5rem;
+}
+
+.address-count {
+    font-size: 2rem;
+    margin-top: 0.5rem;
+}
+
+h2 {
+    font-size: 40px;
+    position: relative;
+    top: -0.75rem;
+    font-family: "avenir-roman";
+    left: -12px;
+    margin-left: 1.5rem;
+    display: inline-block;
+}
+
+.openclose {
+    position: relative;
+    top: -0.9rem;
+    width: 40px;
+    height: 21px;
+    margin-left: 0.5rem;
+}
+
+.edit {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    top: -0.7rem;
+    left: -6px;
+    margin-left: 1.5rem;
+}
+
+.device-line {
+    margin-top: -1.55rem;
+}
+
+.devices-checkbox {
+    margin-left: 50px;
+}
+
+.el {
+    height: 63px;
+    width: auto;
+    position: relative;
+    margin-left: 19px;
+    top: -13px;
+}
+
+.device-line > * {
+    display: inline-block;
+}
+
+.device-name {
+    font-size: 20px;
+    position: relative;
+    top: -8px;
+    left: -6px;
+    margin-left: 1.5rem;
+}
+
+.device-values {
+    margin-left: 9rem;
+}
+
+.month {
+    height: 48px;
+    width: 48px;
+    border: dashed #354CBF 4px;
+    display: inline-block;
+    box-sizing: border-box;
+    margin: -2px;
+    margin-right: 17px;
+    border-radius: 2rem;
+    position: relative;
+    top: 0.5rem;
+    left: -0.75rem;
+}
+
+.month-nav > * {
+    display: inline-block;
+}
+.month-nav {
+    font-size: 20px;
+    margin-left: 21.7rem;
+    margin-top: -4rem;
+}
+.monthtext {
+    margin-right: 20.25px;
+}
+
+.address-content {
+    margin-top: 2rem;
+}
+
+.g {
+    background-color: #4A8634;
+    border: none;
+}
+
+.r {
+    background-color: #D13333;
+    border: none;
+}
+
+.y {
+    background-color: #D19C33;
+    border: none;
+}
+
+.address {
+    margin-top: 2rem;
+}
+
+#no-selected {
+    position: relative;
+    font-family: "avenir-roman";
+    top: -0.75rem;
+    display: inline-block;
+}
+
+#analysebutton *{
+    display: inline-block;
+}
+
+#exportbutton *{
+    display: inline-block;
+}
+
+#analyse-physbutton {
+    position: relative;
+    top: -0.8rem;
+    width: 216px;
+    height: 44px;
+    background-color: #354CBF;
+    color: #E0EBFB;
+    border-radius: 2rem;
+    text-align: center;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    margin-right: 9.2rem;
+}
+
+#export-physbutton {
+    position: relative;
+    top: -0.8rem;
+    width: 216px;
+    height: 44px;
+    background-color: #354CBF;
+    color: #E0EBFB;
+    border-radius: 2rem;
+    text-align: center;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    margin-right: 9.2rem;
+}
+
+#export-physbutton:hover {
+    background-color: #253aa1;
+}
+
+#export-physbutton:active {
+    background-color: #172a87;
+}
+
+#analyse-physbutton:hover {
+    background-color: #253aa1;
+}
+
+#analyse-physbutton:active {
+    background-color: #172a87;
+}
+
+#analysebutttext {
+    position: relative;
+    top: -0.15rem;
+}
+
+#actions-title {
+    margin-left: 4.2rem;
+}
+#bottom-toolbar {
+    margin-top: 2rem;
+    padding-bottom: 6rem;
+}
