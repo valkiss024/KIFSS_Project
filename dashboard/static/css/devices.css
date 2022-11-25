@@ -210,7 +210,7 @@ input::placeholder {
 
 .check-on {
     background-color: #354CBF;
-    background-image: url(../static/check-on.png);
+    background-image: url(../media/check-on.png);
     background-position: center; /* Center the image */
     background-repeat: no-repeat;
     border: solid #354CBF 4px;
