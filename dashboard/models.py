@@ -118,8 +118,6 @@ class Sensor(db.Model):
 
     serial_number = db.Column(db.String(10), primary_key=True, nullable=False)
     name = db.Column(db.String(50), nullable=False)
-    status = db.Column(db.String(100), nullable=False)
-    date = db.Column(db.DateTime(), nullable=False)
     # TODO: Implement what happens to the Sensor if either of the Foreign Keys get deleted
     organization_id = db.Column(db.Integer, db.ForeignKey('organization.id'), nullable=False)
     address = db.Column(db.String(100), nullable=False)
@@ -130,12 +128,10 @@ class Sensor(db.Model):
 
     organization = relationship('Organization', backref='sensors')
 
-    def __init__(self, serial_number, name, status, date, organization_id, address, city, region, latitude, longitude):
+    def __init__(self, serial_number, name, organization_id, address, city, region, latitude, longitude):
         """Class constructor"""
         self.serial_number = serial_number
         self.name = name
-        self.status = status
-        self.date = date
         self.organization_id = organization_id
         self.address = address
         self.city = city
@@ -145,7 +141,7 @@ class Sensor(db.Model):
 
     def __repr__(self):
         """Object representation for debugging and read queries"""
-        return f'Device({self.serial_number}, {self.name}, {self.status}, {self.date}, {self.organization.name}, {self.address}, {self.city}, {self.region}, {self.latitude}, {self.longitude})'
+        return f'Device({self.serial_number}, {self.name}, {self.organization.name}, {self.address}, {self.city}, {self.region}, {self.latitude}, {self.longitude})'
 
 
 class SelfCheck(db.Model):

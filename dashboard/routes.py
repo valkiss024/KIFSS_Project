@@ -1,4 +1,4 @@
-import os
+import os, json
 
 from flask import Blueprint, render_template, flash, redirect, url_for
 from flask_login import login_required, current_user, logout_user, login_user
@@ -83,9 +83,12 @@ def register():
 @login_required
 def dashboard_():
     # print(current_user
-    ins.add_example_sensors(current_user.get_organization())
+    ins.add_example_sensors(current_user.get_organization_id())
     ins.json_to_sql()
-    return render_template('dashboard.html', user=current_user)
+    # ins.get_self_checks(current_user.get_organization_id())
+    data = ins.get_sensors(current_user.get_organization_id())
+    print(json.dumps(data))
+    return render_template('dashboard.html', user=current_user, data=json.dumps(data))
 
 
 @dashboard.route('/logout')

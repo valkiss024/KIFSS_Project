@@ -24,16 +24,17 @@ def json_to_sql():
 
             sensor = connection.execute('SELECT * FROM Sensor WHERE serial_number="' + serial_number + '"')
 
-            for row in sensor:
-                new_trigger = Trigger(serial_number=serial_number, status=status, date=date, assessed=0)
-                exists = db.session.query(Trigger).filter_by(serial_number=serial_number, date=date).first()
-                if not exists:
-                    db.session.add(new_trigger)
-                
-            db.session.commit()
+            if sensor:
+                for row in sensor:
+                    exists = db.session.query(Trigger).filter_by(serial_number=serial_number, date=date).first()
+                    if not exists:
+                        new_trigger = Trigger(serial_number=serial_number, status=status, date=date, assessed=0)
+                        db.session.add(new_trigger)
 
         except FileNotFoundError:
             continue
+
+    db.session.commit()
 
     for f in os.listdir(path=selfchecks):
         try:
@@ -47,34 +48,63 @@ def json_to_sql():
 
             sensor = connection.execute('SELECT * FROM Sensor WHERE serial_number="' + serial_number + '"')
 
-            for row in sensor:
-                new_selfcheck = SelfCheck(serial_number=serial_number, status=status, date=date, assessed=0)
-                exists = db.session.query(SelfCheck).filter_by(serial_number=serial_number, date=date).first()
-                if not exists:
-                    db.session.add(new_selfcheck)
-
-            db.session.commit()
+            if sensor:
+                for row in sensor:
+                    exists = db.session.query(SelfCheck).filter_by(serial_number=serial_number, date=date).first()
+                    if not exists:
+                        new_selfcheck = SelfCheck(serial_number=serial_number, status=status, date=date, assessed=0)
+                        db.session.add(new_selfcheck)
 
         except FileNotFoundError:
             continue
+
+    db.session.commit()
         
 
 def add_example_sensors(organization):
     sensors = []
-    locations = [["187 Fairview Drive", "Aberdeen", "Aberdeenshire"], ["191 Fairview Drive", "Aberdeen", "Aberdeenshire"], ["197 Fairview Drive", "Aberdeen", "Aberdeenshire"],
-                 ["215 Fairview Drive", "Aberdeen", "Aberdeenshire"], ["71 Fairview Drive", "Aberdeen", "Aberdeenshire"], ["21 Tillydrone Avenue", "Aberdeen", "Aberdeenshire"],
-                 ["9 Merrivale, Station Road", "Dyce", "Aberdeenshire"], ["5 Merrivale, Station Road", "Dyce", "Aberdeenshire"], ["7 Merrivale, Station Road", "Dyce", "Aberdeenshire"],
+    locations = [["187 Fairview Drive", "Danestone", "Aberdeen"], ["191 Fairview Drive", "Danestone", "Aberdeen"], ["197 Fairview Drive", "Danestone", "Aberdeen"],
+                 ["215 Fairview Drive", "Danestone", "Aberdeen"], ["71 Fairview Drive", "Danestone", "Aberdeen"], ["21 Tillydrone Ave", "Aberdeen", "AB24 2TE"],
+                 ["21 Station Road", "Dyce", "Aberdeen"], ["25 Station Road", "Dyce", "Aberdeen"], ["27 Station Road", "Dyce", "Aberdeen"],
                  ["14 Trinity Court", "Westhill", "Aberdeenshire"]]
     locator = Nominatim(user_agent="kifss")
 
     for i in range(len(locations)):
-        loc = locator.geocode(locations[i][0] + "," + locations[i][1] + "," + locations[i][2])
-        if loc is not None:
-            sensors.append(Sensor("A00000000" + str(i+1), "Flat 1", "Pass", datetime.datetime.now(), organization, locations[i][0], locations[i][1], locations[i][2], loc.latitude, loc.longitude))
+        loc = locator.geocode(locations[i][0] + ", " + locations[i][1] + ", " + locations[i][2])
+        if i < 9:
+            if loc is not None:
+                sensors.append(Sensor("A00000000" + str(i+1), "Flat 1", organization, locations[i][0], locations[i][1], locations[i][2], loc.latitude, loc.longitude))
+            else:
+                sensors.append(Sensor("A00000000" + str(i+1), "Flat 1", organization, locations[i][0], locations[i][1], locations[i][2], "", ""))
         else:
-            sensors.append(Sensor("A00000000" + str(i+1), "Flat 1", "Pass", datetime.datetime.now(), organization, locations[i][0], locations[i][1], locations[i][2], "", ""))
+            if loc is not None:
+                sensors.append(Sensor("A000000010", "Flat 1", organization, locations[i][0], locations[i][1], locations[i][2], loc.latitude, loc.longitude))
+            else:
+                sensors.append(Sensor("A000000010", "Flat 1", organization, locations[i][0], locations[i][1], locations[i][2], "", ""))
     
     for i in sensors:
         db.session.merge(i)
     
     db.session.commit()
+
+
+def get_sensors(org_id):
+    sensors = db.session.query(Sensor).all()
+    list = {'data': []}
+    for s in sensors:
+        d = s.__dict__
+        d.pop("_sa_instance_state")
+        list['data'].append(d)
+
+    return list
+        
+
+def get_self_checks(org_id):
+    sql ="""WITH first_query AS (
+            SELECT serial_number
+            FROM Sensor
+            WHERE Sensor.organisation_id = """ + str(org_id) + """) SELECT
+            SelfCheck.id FROM selfchecks.id FROM SelfCheck JOIN first_query ON SelfCheck.serial_number
+            == first_query.serial_number"""
+    results = connection.execute(sql)
+    print(results)
