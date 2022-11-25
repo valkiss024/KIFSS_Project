@@ -19,7 +19,7 @@
         <div id="logo-menu">
             <img src="../static/media/logo.png" alt="">
         </div>
-        <a href="./dashboard.html">
+        <a href="{{ url_for('main.dashboard_') }}">
             <div class="menu-item item-off">
                 <div class="menu-icon">
                     <img src="../static/media/homeOff.png" alt="">
@@ -27,7 +27,7 @@
                 <p class="menu-text">Home</p>
             </div>
         </a>
-        <a href="./devices.html">
+        <a href="{{ url_for('main.devices') }}">
             <div id="on" class="devicesfix menu-item">
                 <div class="menu-icon">
                     <img src="../static/media/devicesOn.png" alt="">
@@ -35,7 +35,7 @@
                 <p id="text-on" class="menu-text">Devices</p>
             </div>
         </a>
-        <a href="./analysis.html">
+        <a href="{{ url_for('main.analysis') }}">
             <div class="menu-item item-off">
                 <div class="menu-icon">
                     <img src="../static/media/02.png" alt="">

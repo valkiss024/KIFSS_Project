@@ -21,6 +21,7 @@ def load_user(user_id):
 def load_organization(organization_id):
     return Organization.query.get(int(organization_id))
 
+
 # Define routes for the Dashboard
 
 
@@ -77,12 +78,24 @@ def register():
 @login_required
 def dashboard_():
     # print(current_user
-    ins.add_example_sensors(current_user.get_organization_id())
-    ins.json_to_sql()
+    # ins.add_example_sensors(current_user.get_organization_id())
+    # ins.json_to_sql()
     # ins.get_self_checks(current_user.get_organization_id())
-    data = ins.get_sensors(current_user.get_organization_id())
-    print(json.dumps(data))
-    return render_template('dashboard.html', user=current_user, data=json.dumps(data))
+    # data = ins.get_sensors(current_user.get_organization_id())
+    # print(json.dumps(data))
+    return render_template('dashboard.html', user=current_user)
+
+
+@dashboard.route('/devices')
+@login_required
+def devices():
+    return render_template('devices.html')
+
+
+@dashboard.route('/analysis')
+@login_required
+def analysis():
+    return render_template('analysis.html')
 
 
 @dashboard.route('/logout')
@@ -157,7 +170,6 @@ def add_user():
 def reset_password():
     form = ResetPasswordForm(current_user.__class__.__name__, current_user)
     if form.validate_on_submit():
-
         current_user.create_password_hash(form.new_password.data)
 
         db.session.merge(current_user)
